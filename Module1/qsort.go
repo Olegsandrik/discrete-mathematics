@@ -18,12 +18,12 @@ func Partition(swap func(i, j int), less func(i, j int) bool, low int, high int)
 	j := high
 	for j < high {
 		if less(arr[j], arr[high]) {
-			swap(arr[i], arr[j])
+			swap(i, j)
 			i++
 		}
 		j++
 	}
-	swap(arr[i], arr[high])
+	swap(i, high)
 	return i
 }
 func QuickSortRec(less func(i, j int) bool, swap func(i, j int), low int, high int) {
@@ -48,3 +48,4 @@ func main() {
 	qsort(n, less, swap)
 	fmt.Println(arr)
 }
+
