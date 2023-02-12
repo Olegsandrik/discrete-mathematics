@@ -15,7 +15,7 @@ func less(i int, j int) bool {
 }
 func Partition(swap func(i, j int), less func(i, j int) bool, low int, high int) int {
 	i := low
-	j := high
+	j := low
 	for j < high {
 		if less(arr[j], arr[high]) {
 			swap(i, j)
