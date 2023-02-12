@@ -1,14 +1,11 @@
 package main
-
 import "fmt" //это пакет
-
 var arr []int
-
 func swap(i int, j int) {
 	arr[i], arr[j] = arr[j], arr[i]
 }
 func less(i int, j int) bool {
-	if arr[i] >= arr[j] {
+	if i >= j {
 		return false
 	}
 	return true
@@ -16,8 +13,8 @@ func less(i int, j int) bool {
 func Partition(swap func(i, j int), less func(i, j int) bool, low int, high int) int {
 	i := low
 	j := low
-	for j < high {
-		if less(j, high) {
+	for less(j, high) {
+		if less(arr[j], arr[high]) {
 			swap(i, j)
 			i++
 		}
@@ -27,7 +24,7 @@ func Partition(swap func(i, j int), less func(i, j int) bool, low int, high int)
 	return i
 }
 func QuickSortRec(less func(i, j int) bool, swap func(i, j int), low int, high int) {
-	if low < high {
+	if less(low, high) {
 		q := Partition(swap, less, low, high)
 		QuickSortRec(less, swap, low, q-1)
 		QuickSortRec(less, swap, q+1, high)
